@@ -131,8 +131,21 @@ Baam !! Its done.
         poetry export --without-hashes --format=requirements.txt > requirements.txt
        ```
 
+## Flow of Sign-up, Verification and from Login to About Dashboard.
+### Here User Sign's Up
+![img.png](docs/img/signup.png)
 
-##  Testing in Local on Postman (CURL COMMAND GIVEN BELOW TO DIRECTLY COPY PASTE IN POSTMAN):::
+### Here Verifies Email and Activate the Account.
+![img.png](docs/img/email_verify.png)
+
+### Here Logs In.
+![img.png](docs/img/login.png)
+
+### Here After LogIn User is redirected to About Page.
+![img.png](docs/img/about.png)
+
+
+###  Testing in Local on Postman (CURL COMMAND GIVEN BELOW TO DIRECTLY COPY PASTE IN POSTMAN):::
 
 ### Endpoints
 
