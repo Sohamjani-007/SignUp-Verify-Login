@@ -12,7 +12,15 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'mobile', 'email', 'password1', 'password2')
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "mobile",
+            "email",
+            "password1",
+            "password2",
+        )
 
 
 class LoginForm(AuthenticationForm):

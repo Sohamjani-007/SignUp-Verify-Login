@@ -16,12 +16,17 @@ This project contains codeBase for all user signup, email - verfication and logi
 ***
 
 # Django and Python Version for project.
-
+***
     Django - 5.0.6
     Python - 3.11.5
     Django Rest Framework = 3.15.1
 
+
+
 ***
+## *NOTE  --> .env is with the owner. 😅* 
+***
+
 ## Installing python3.11.5 using pyenv
 
 * The simplest and easiest way to install python3.11.5 along side your existing python version is using `pyenv`.
@@ -145,10 +150,36 @@ Baam !! Its done.
 ![img.png](docs/img/about.png)
 
 
+## Note on Throttling
+###### The friend request sending functionality is rate-limited to 3 requests per minute.
+###### If you exceed this limit, you will receive a 429 Too Many Requests response.
+
 ###  Testing in Local on Postman (CURL COMMAND GIVEN BELOW TO DIRECTLY COPY PASTE IN POSTMAN):::
 
-### Endpoints
 
+### For Auth Token is generated for every users.
+##### Though if you want to do it.
+
+#### DO RUN THIS SCRIPT IN SHELL :::
+```sh
+from django.contrib.auth import get_user_model
+from rest_framework.authtoken.models import Token
+
+User = get_user_model()
+for user in User.objects.all():
+    Token.objects.get_or_create(user=user)
+```
+#### OR
+```sh
+curl --location 'http://localhost:8666/accounts/token-auth/' \
+--header 'Content-Type: application/json' \
+--data '{
+    "username": "TechyonAdmin",
+    "password": "techyonadmin"
+}'
+```
+
+### Endpoints
 #### 1. Sign Up
 
 Endpoint: `/api/signup/`
@@ -158,7 +189,7 @@ Method: `POST`
 This endpoint allows new users to sign up by providing their first name, last name, email, password, and mobile number.
 
 ```sh
-curl -X POST http://localhost:8000/api/signup/ \
+curl -X POST http://localhost:8666/api/signup/ \
 -H "Content-Type: application/json" \
 -d '{
     "first_name": "John",
@@ -179,7 +210,7 @@ Method: `POST`
 This endpoint allows users to log in by providing their email and password.
 
 ```sh
-curl -X POST http://localhost:8000/api/login/ \
+curl -X POST http://localhost:8666/api/login/ \
 -H "Content-Type: application/json" \
 -d '{
     "email": "johndoe@example.com",
@@ -198,11 +229,11 @@ This endpoint is used to activate the user's account after they receive the acti
 Replace <uidb64> and <token> with the actual values from the activation link.
 
 ```sh
-curl -X GET http://localhost:8000/api/activate/<uidb64>/<token>/
+curl -X GET http://localhost:8666/api/activate/<uidb64>/<token>/
 
 ```
 
-Example : 
+Example :
 ```
 curl -X GET http://localhost:8000/api/activate/Nw/token1234567890/
 ```
@@ -214,23 +245,95 @@ Endpoint: `/api/about/`
 
 Method: `GET`
 
-This endpoint is only accessible to authenticated users. 
+This endpoint is only accessible to authenticated users.
 Use the token received from the login response to access this endpoint.
 
 
 ```sh
-curl -X GET http://localhost:8000/api/about/ \
+curl -X GET http://localhost:8666/api/about/ \
 -H "Authorization: Token your_auth_token"
 
 ```
 Replace your_auth_token with the actual token received after login.
+
+#### 5. Search Users
+Endpoint: `/api/search/?q=<keyword>`
+
+Method: `GET`
+
+Description: Search for users by email or name (paginated to 10).
+
+Request:
+
+```sh
+curl -X GET http://localhost:8666/api/search/?q=am \
+-H "Authorization: Token ecf6569e4f0eac014392df4385b502c20da9ddf7"
+```
+
+#### 6. Send Friend Request
+Endpoint: `/api/friend-request/send/<user_id>/`
+
+Method: `POST`
+
+Description: Send a friend request to another user.
+
+Request:
+
+```sh
+curl --location --request POST 'http://localhost:8666/accounts/friend-request/send/2/' \
+--header 'Authorization: Token ecf6569e4f0eac014392df4385b502c20da9ddf7'
+```
+
+#### 7. Accept/Reject Friend Request
+Endpoint: `/api/friend-request/respond/<request_id>/<action>/`
+
+Method: `POST`
+
+Description: Accept or reject a friend request.
+
+Request:
+```sh
+# To accept a friend request
+curl -X POST http://localhost:8666/api/friend-request/respond/1/accept/ \
+-H "Authorization: Token ecf6569e4f0eac014392df4385b502c20da9ddf7"
+
+# To reject a friend request
+curl -X POST http://localhost:8666/api/friend-request/respond/1/reject/ \
+-H "Authorization: Token ecf6569e4f0eac014392df4385b502c20da9ddf7"
+```
+
+#### 8. List Friends
+Endpoint: `/api/friends/`
+
+Method: `GET`
+
+Description: Get a list of friends.
+
+Request:
+```sh
+curl --location 'http://localhost:8666/accounts/friends/' \
+--header 'Authorization: Token ecf6569e4f0eac014392df4385b502c20da9ddf7'
+```
+
+#### 9. List Pending Friend Requests
+Endpoint: `friend-requests/pending/`
+
+Method: `GET`
+
+Description: Get a list of pending friend requests.
+
+Request:
+```sh
+curl --location 'http://localhost:8666/accounts/friend-requests/pending/' \
+--header 'Authorization: Token 9329e67d37381b153327ee67b5c0cd17fbb4c8d8'
+```
 
 
 
 # Setting up Postgres in local
 
 1. Install Postgres in your system.
-   - [x][Postgres Installation for all Systems](https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/)
+   - [x] [Postgres Installation for all Systems](https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/)
 
 
 2.  Facing > django.db.utils.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "postgres"?. Follow below lines :
@@ -330,7 +433,7 @@ Replace your_auth_token with the actual token received after login.
     ```commandline
     python3 -m pre_commit run --all-files
     ```
-    
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your `.env` file: (Sent on email)
