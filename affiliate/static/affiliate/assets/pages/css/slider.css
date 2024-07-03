@@ -115,24 +115,24 @@
 }
 
 .carousel-slider .carousel-item-four {
-    background: url(../../../assets/pages/img/shop-slider/slide1/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide1/Object-Rights-Curved-Flatware-Ergonomic-Cutlery-02.jpg);
     background-size: cover;
     background-position: center center;
 }
 
 .carousel-slider .carousel-item-five {
-    background: url(../../../assets/pages/img/shop-slider/slide2/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide2/Friendly-Border-Fan-Desk-Divider-02.jpg);
     background-size: cover;
 }
 
 .carousel-slider .carousel-item-six {
-    background: url(../../../assets/pages/img/shop-slider/slide3/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide3/handy_nails_edited.jpg);
     background-size: cover;
     background-position: center center;
 }
 
 .carousel-slider .carousel-item-seven {
-    background: url(../../../assets/pages/img/shop-slider/slide4/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide4/cycle_lazer_indicator.jpg);
     background-size: cover;
     background-position: center center;
 }
@@ -227,7 +227,7 @@
     font-size: 45px;
     font-weight: 200;
     line-height: 1.4;
-    color: #fff;
+    color: #404040;
 }
 
 .carousel-slider .carousel-subtitle-v4 {
@@ -235,7 +235,7 @@
     font-size: 45px;
     font-weight: 700;
     line-height: 1.4;
-    color: #fff;
+    color: #707070;
 }
 
 .carousel-slider .carousel-subtitle-v5 {
@@ -457,4 +457,18 @@
     .carousel-slider .promo-like-text p {
         font-size: 16px;
     }
+}
+
+/* Carousel Btn */
+.carousel-slider .carousel-btn-1 {
+    display: inline-block;
+    font-size: 18px;
+    color: #245580;
+    padding: 10px 20px;
+    border: 1px solid #c0a16b;
+}
+.carousel-slider .carousel-btn:hover {
+    border-color: #e6400c;
+    background: #e6400c;
+    text-decoration: none;
 }
