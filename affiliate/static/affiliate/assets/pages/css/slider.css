@@ -472,3 +472,17 @@
     background: #e6400c;
     text-decoration: none;
 }
+
+/* Carousel Btn */
+.carousel-slider .carousel-btn-2 {
+    display: inline-block;
+    font-size: 40px;
+    color: #6B5B95;
+    padding: 10px 20px;
+    border: 1px solid #34568B;
+}
+.carousel-slider .carousel-btn:hover {
+    border-color: #FF6F61;
+    background: #88B04B;
+    text-decoration: none;
+}
