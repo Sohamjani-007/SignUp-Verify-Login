@@ -62,6 +62,16 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <link href="{% static 'affiliate/assets/corporate/css/themes/red.css' %}" rel="stylesheet" id="style-color">
   <link href="{% static 'affiliate/assets/corporate/css/custom.css' %}" rel="stylesheet">
   <!-- Theme styles END -->
+
+    <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+
+<!-- jQuery and Owl Carousel JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+
 </head>
 <!-- Head END -->
 
@@ -515,7 +525,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
           <!-- BEGIN SALE PRODUCT -->
           <div class="col-md-12 sale-product">
             <h2>New Arrivals</h2>
-            <div class="owl-carousel owl-carousel5">
+            <div id="sale-product-slider-1" class="owl-carousel">
               <div>
                 <div class="product-item">
                   <div class="pi-img-wrapper">
@@ -672,10 +682,10 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
           <!-- END SIDEBAR -->
           <!-- BEGIN CONTENT -->
           <div class="col-md-9 col-sm-8">
-            <h2 style="color: #ffffff; background-color: #4CAF50; padding: 10px; border-radius: 5px; text-align: center; font-family: Arial, sans-serif;">
+            <h2 style="color: #008200; background-color: #7bdd00; padding: 10px; border-radius: 5px; text-align: center; font-family: Arial, sans-serif;">
                 HYGIENIC SALE
             </h2>
-            <div class="owl-carousel owl-carousel3">
+            <div id="sale-product-slider-2" class="owl-carousel">
               <div>
                 <div class="product-item">
                   <div class="pi-img-wrapper">
@@ -1481,6 +1491,61 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
             Layout.initTwitter();
         });
     </script>
+    <script>
+    $(document).ready(function() {
+        $("#sale-product-slider-1").owlCarousel({
+            items: 4, // Number of items to display
+            loop: true,
+            margin: 10,
+            nav: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $("#sale-product-slider-2").owlCarousel({
+            items: 3, // Number of items to display
+            loop: true,
+            margin: 10,
+            nav: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true
+        });
+    });
+    </script>
+    <style>
+    .owl-prev, .owl-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #ff6600; /* Orange color */
+        color: #fff; /* White color for arrow */
+        border-radius: 50%; /* Round buttons */
+        padding: 10px 15px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .owl-prev:hover, .owl-next:hover {
+        background: #e65c00; /* Slightly darker orange on hover */
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .owl-prev {
+        left: -25px; /* Adjust this value as needed */
+    }
+
+    .owl-next {
+        right: -25px; /* Adjust this value as needed */
+    }
+    </style>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
